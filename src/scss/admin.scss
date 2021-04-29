@@ -1,0 +1,151 @@
+@import "./global";
+
+@import "./../../node_modules/bootstrap/scss/transitions";
+@import "./../../node_modules/bootstrap/scss/dropdown";
+@import "./../../node_modules/bootstrap/scss/nav";
+@import "./../../node_modules/bootstrap/scss/navbar";
+@import "./../../node_modules/bootstrap/scss/list-group";
+@import "./../../node_modules/bootstrap/scss/close";
+@import "./../../node_modules/bootstrap/scss/breadcrumb";
+
+.dropdown-toggle {
+    .avatar {
+        position: relative;
+        display: inline-flex;
+        font-size: 1.25rem;
+        line-height: 1;
+        border-radius: 50%;
+        overflow: hidden;
+        user-select: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+
+        img {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            object-fit: cover;
+            color: transparent;
+            text-indent: 10000px;
+        }
+    }
+
+    &::after {
+        border: solid;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 2px;
+        transform: rotate(45deg);
+    }
+}
+
+.dropdown-menu-end {
+    --bs-position: end;
+}
+
+.header {
+    @include make-col-ready();
+    @include make-col(12);
+    z-index: $zindex-fixed;
+
+    .navbar-align {
+        margin-left: auto;
+    }
+}
+
+.sidebar {
+    @include make-col-ready();
+    z-index: $zindex-fixed + 1;
+
+    @include media-breakpoint-up(md) {
+        @include make-col(3);
+    }
+
+    @include media-breakpoint-up(xl) {
+        @include make-col(2);
+    }
+}
+
+.main {
+    @include make-col-ready();
+
+    @include media-breakpoint-up(md) {
+        @include make-col(9);
+    }
+
+    @include media-breakpoint-up(xl) {
+        @include make-col(10);
+    }
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 72px);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .nav-item-submenu.collapsing {
+        transition: height .35s ease-in-out;
+    }
+
+    & .nav-link {
+        color: $navbar-light-color;
+        font-size: 90%;
+        padding-left: $nav-link-padding-x * 3;
+
+        & .bi {
+            position: absolute;
+            left: $nav-link-padding-x;
+            color: #999;
+        }
+
+        &.active {
+            color: $navbar-light-active-color;
+            & .bi {
+                color: inherit
+            }
+        }
+
+        &:hover {
+            background-color: $gray-200;
+            color: $navbar-light-hover-color;
+
+            & .bi {
+                color: inherit
+            }
+        }
+    }
+
+    .nav-link-menu {
+        position: relative;
+        @extend .dropdown-toggle;
+        &::after {
+            position: absolute;
+            right: $nav-link-padding-x;
+            top: $nav-link-padding-x;
+            border: solid;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 2px;
+            transform: rotate(45deg);
+            transition: transform .15s;
+        }
+
+        &.collapsed::after {
+            transform: rotate(-45deg);
+            transition: transform .15s;
+        }
+    }
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
+}
+
+
