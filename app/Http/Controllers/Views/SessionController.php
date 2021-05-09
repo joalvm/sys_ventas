@@ -2,12 +2,29 @@
 
 namespace App\Http\Controllers\Views;
 
-use App\Components\Controller;
+use Illuminate\View\View;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
-class SessionController extends Controller
+class SessionController extends ViewsController
 {
-    public function login()
+    public function register(): View
+    {
+        return view('pages.register');
+    }
+
+    public function login(): View
     {
         return view('pages.login');
+    }
+
+    public function authenticate(LoginRequest $request)
+    {
+        $rememberMe = $request->input('remember-me');
+        $credentials = $request->only(['email', 'password']);
+
+        $result = Auth::attempt($credentials, $rememberMe);
+
+        dd($result);
     }
 }

@@ -15,7 +15,9 @@ use App\Http\Controllers\Views\SessionController;
 |
 */
 
+Route::get('register', [SessionController::class, 'register']);
 Route::get('login', [SessionController::class, 'login']);
+Route::post('login', [SessionController::class, 'authenticate']);
 
 Route::prefix('admin')
 ->group(function () {

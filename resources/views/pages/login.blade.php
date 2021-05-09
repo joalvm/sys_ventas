@@ -1,15 +1,14 @@
 @extends('templates.basic')
 
-@section('title', 'Login')
+@section('title', 'Iniciar Sesión')
 
 @section('content')
-    <form class="form-signin">
-        <!--<img class="mb-4" src="" alt="" width="72" height="72">-->
-        <br><br>
-        <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
+    <form action="{{ url('login') }}" method="POST" class="form-signin">
+        @csrf()
+        <h1 class="h3 mb-3 font-weight-normal text-center mb-2">Iniciar Sesión</h1>
         <div class="form-group">
-            <label for="txtusername" class="sr-only">Usuario</label>
-            <input type="email" id="txtusername" name="username" class="form-control" placeholder="Usuario" required autofocus>
+            <label for="txtemail" class="sr-only">Correo Electrónico</label>
+            <input type="email" id="txtemail" name="email" class="form-control" placeholder="Correo Electrónico" required autofocus>
         </div>
         <div class="form-group">
             <label for="txtpassword" class="sr-only">contraseña</label>
@@ -21,11 +20,14 @@
         </div>
         <br>
         <div class="form-group">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Acceder</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">ACCEDER</button>
+            <a href="{{url('register')}}" class="btn btn-lg btn-outline-secondary btn-block" type="submit">REGISTRARME</a>
         </div>
-        <hr>
-        <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-{{ date('Y') }}</p>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; {{ date('Y') }}</p>
     </form>
+    <pre>
+        @json(Request::session(), JSON_PRETTY_PRINT)
+    </pre>
 @endsection
 
 @push('post_html')

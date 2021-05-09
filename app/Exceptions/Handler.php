@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Throwable;
+use Illuminate\Support\Str;
 use App\Components\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -54,6 +56,8 @@ class Handler extends ExceptionHandler
             );
         }
 
-        return Response::catch($exception);
+        return Str::contains($request->getPathInfo(), '/api/')
+            ? Response::catch($exception)
+            : parent::render($request, $exception);
     }
 }

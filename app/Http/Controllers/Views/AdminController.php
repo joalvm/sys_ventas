@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Views;
 
 use Illuminate\View\View;
-use App\Components\Controller;
 
-class AdminController extends Controller
+class AdminController extends ViewsController
 {
     public function dashboard(): View
     {
