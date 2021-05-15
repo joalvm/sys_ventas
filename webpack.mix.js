@@ -19,7 +19,7 @@ const ASSETS_TARGET = 'public/static/assets/';
  */
 
 mix.browserSync({
-    proxy: 'http://project-franco.local/',
+    proxy: 'http://sysventas.local/',
     open: false,
 });
 

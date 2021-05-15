@@ -2,11 +2,13 @@
 
 namespace App\Repositories;
 
-use stdClass;
 use App\Contracts\PersonsContract;
+use App\Models\Persons;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Query\Builder;
+use stdClass;
 
 class PersonsRepository extends Repository implements PersonsContract
 {
@@ -20,11 +22,21 @@ class PersonsRepository extends Repository implements PersonsContract
         return $this->builder()->where('p.id', $id)->first();
     }
 
+    public function save(Request $request): Persons
+    {
+        $model = new Persons($request->all());
+
+        $model->validate()->save();
+
+        return $model;
+    }
+
     public function builder(): Builder
     {
         return DB::table('persons', 'p')
             ->select($this->columns())
-            ->whereNull('deleted_at');
+            ->whereNull('deleted_at')
+        ;
     }
 
     public function columns(): array

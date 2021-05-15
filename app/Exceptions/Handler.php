@@ -2,14 +2,14 @@
 
 namespace App\Exceptions;
 
-use Throwable;
-use Illuminate\Support\Str;
 use App\Components\Response;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpFoundation\Response as HttpFoundationResponse;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -31,8 +31,6 @@ class Handler extends ExceptionHandler
 
     /**
      * Register the exception handling callbacks for the application.
-     *
-     * @return void
      */
     public function register()
     {
@@ -43,8 +41,6 @@ class Handler extends ExceptionHandler
 
     /**
      * @param Request $request
-     *
-     * @return void
      */
     public function render($request, Throwable $exception)
     {

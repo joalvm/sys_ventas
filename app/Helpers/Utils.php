@@ -15,7 +15,8 @@ if (!function_exists('to_bool')) {
         if (is_string($dta)) {
             if (preg_match('/^(true|1|yes|on|y|t)$/m', $dta)) {
                 return true;
-            } elseif (preg_match('/^(false|0|no|n|off|f)$/m', $dta)) {
+            }
+            if (preg_match('/^(false|0|no|n|off|f)$/m', $dta)) {
                 return false;
             }
         }
@@ -52,7 +53,7 @@ if (!function_exists('to_array')) {
     /**
      * Formatea un string separado por comas y lo convierte en array.
      *
-     * @param string|array|null $dta
+     * @param null|array|string $dta
      */
     function to_array($dta): array
     {
@@ -71,7 +72,7 @@ if (!function_exists('to_array_int')) {
     /**
      * Formatea un string a array y lo filtra por valores numericos.
      *
-     * @param string|array|null $dta
+     * @param null|array|string $dta
      */
     function to_array_int($dta): ?array
     {
@@ -89,7 +90,7 @@ if (!function_exists('to_array_float')) {
     /**
      * Formatea un string a array y lo filtra por valores numericos.
      *
-     * @param string|array|null $dta
+     * @param null|array|string $dta
      */
     function to_array_float($dta): ?array
     {
@@ -107,7 +108,7 @@ if (!function_exists('to_array_str')) {
     /**
      * Formatea un string separado por comas y lo convierte en array.
      *
-     * @param string|array $dta
+     * @param array|string $dta
      */
     function to_array_str($dta): array
     {

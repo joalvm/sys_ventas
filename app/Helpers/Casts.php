@@ -8,8 +8,6 @@ if (!function_exists('cast_int')) {
      *
      * @param array $row    Objeto a castear
      * @param array $fields Keys cuyos valores serán casteados (acepta notación DOT)
-     *
-     * @return void
      */
     function cast_int(array &$row, array $fields = [])
     {
@@ -31,8 +29,6 @@ if (!function_exists('cast_bool')) {
      *
      * @param array $row    Objeto a castear
      * @param array $fields Keys cuyos valores serán casteados (acepta notación DOT)
-     *
-     * @return void
      */
     function cast_bool(array &$row, array $fields = [])
     {
@@ -54,8 +50,6 @@ if (!function_exists('cast_float')) {
      *
      * @param array $row    Objeto a castear
      * @param array $fields Keys cuyos valores serán casteados (acepta notación DOT)
-     *
-     * @return void
      */
     function cast_float(array &$row, array $fields = [])
     {
@@ -77,8 +71,6 @@ if (!function_exists('cast_json')) {
      *
      * @param array $row    Objeto a castear
      * @param array $fields Keys cuyos valores serán casteados (acepta notación DOT)
-     *
-     * @return void
      */
     function cast_json(array &$row, array $fields = [], bool $assoc = true)
     {

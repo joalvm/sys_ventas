@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Views\AdminController;
 use App\Http\Controllers\Views\SessionController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +16,13 @@ use App\Http\Controllers\Views\SessionController;
 */
 
 Route::get('register', [SessionController::class, 'register']);
+Route::post('register', [SessionController::class, 'createUser']);
 Route::get('login', [SessionController::class, 'login']);
 Route::post('login', [SessionController::class, 'authenticate']);
 
 Route::prefix('admin')
-->group(function () {
+    ->group(function () {
     Route::get('dashboard', [AdminController::class, 'dashboard']);
     Route::get('profile', [AdminController::class, 'profile']);
-});
+})
+;

@@ -2,10 +2,10 @@
 
 namespace App\Contracts;
 
-use stdClass;
 use App\Models\UnidadMedida;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use stdClass;
 
 interface UnidadMedidaContract extends RepositoryContract
 {

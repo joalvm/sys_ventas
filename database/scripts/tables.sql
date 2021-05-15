@@ -4,8 +4,8 @@ CREATE TABLE `persons` (
   `lastname` varchar(80) NOT NULL,
   `email` varchar(80) NOT NULL,
   `gender` enum('MALE', 'FEMALE', 'OTHERS') NOT NULL,
-  `phone` varchar(80) NOT NULL,
-  `avatar_url` varchar(150) NOT NULL,
+  `phone` varchar(80) NULL,
+  `avatar_url` varchar(150) NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime NULL

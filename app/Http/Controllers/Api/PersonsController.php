@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Contracts\PersonsContract;
+use Illuminate\Http\Request;
 
 class PersonsController extends ApiController
 {

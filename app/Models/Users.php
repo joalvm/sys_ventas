@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Validatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Users extends Model
 {
@@ -19,19 +19,28 @@ class Users extends Model
 
     protected $table = 'users';
     protected $fillable = [
-        'persons_id',
+        'person_id',
         'username',
         'password',
         'salt',
         'recovery_token',
         'verification_token',
         'verified_at',
+        'enabled',
+    ];
+
+    protected $attributes = [
+        'enabled' => true,
+    ];
+
+    protected $casts = [
+        'enabled' => 'boolean',
     ];
 
     public function rules(): array
     {
         return [
-            'persons_id' => [
+            'person_id' => [
                 'required',
                 'integer',
                 Rule::exists('persons', 'id')->whereNull('deleted_at'),
@@ -39,7 +48,23 @@ class Users extends Model
             'username' => ['required', 'string', 'max:15', 'min:6'],
             'password' => ['required', 'string'],
             'salt' => ['required', 'string', 'max:16'],
+            'enabled' => ['nullable', 'boolean'],
         ];
+    }
+
+    public function hashPassword(): self
+    {
+        $salt = Str::random();
+
+        $password = Hash::make(
+            sprintf('%s.%s', $salt, $this->getAttribute('password')),
+            ['rounds' => 14]
+        );
+
+        $this->setAttribute('password', $password);
+        $this->setAttribute('salt', $salt);
+
+        return $this;
     }
 
     // public function reloadPassword(): self
