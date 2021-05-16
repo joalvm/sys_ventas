@@ -4,14 +4,14 @@ namespace App\Models;
 
 use App\Traits\Validatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
-class Users extends Model
+class Users extends User
 {
     use HasFactory;
     use SoftDeletes;
@@ -26,6 +26,7 @@ class Users extends Model
         'recovery_token',
         'verification_token',
         'verified_at',
+        'remember_token',
         'enabled',
     ];
 
@@ -66,23 +67,6 @@ class Users extends Model
 
         return $this;
     }
-
-    // public function reloadPassword(): self
-    // {
-    //     $salt = Str::random();
-
-    //     $password = Hash::make(
-    //         $salt . '.' . $this->getAttribute('password'),
-    //         ['rounds' => 14]
-    //     );
-
-    //     $this->setAttribute('salt', $salt);
-    //     $this->setAttribute('password', $password);
-
-    //     $this->update();
-
-    //     return $this;
-    // }
 
     public function person(): BelongsTo
     {

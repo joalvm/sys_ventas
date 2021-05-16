@@ -159,10 +159,12 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         // Package Service Providers...
+        Jenssegers\Agent\AgentServiceProvider::class,
 
         // Application Service Providers...
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        App\Providers\SessionServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,

@@ -22,6 +22,7 @@ CREATE TABLE `users` (
   `recovery_token` varchar(160) NOT NULL,
   `verification_token` varchar(160) NOT NULL,
   `verified_at` datetime NOT NULL,
+  `remember_token` varchar(100) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime NULL,
@@ -31,14 +32,17 @@ DEFAULT CHARACTER SET=utf8mb4
 DEFAULT COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `user_sessions` (
-  `id` int(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `id` varchar UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_id` int(11) UNSIGNED NOT NULL,
   `token` text NOT NULL,
   `expire` datetime NOT NULL,
-  `ip` varchar(16) NULL,
-  `patform` varchar(25) NULL,
+  `ip_address` varchar(45) NULL,
+  `platform` varchar(25) NULL,
   `browser` varchar(25) NULL,
   `browser_version` varchar(25) NULL,
+  `user_agent` text NULL,
+  `payload` text NOT NULL,
+  `last_activity` int NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `closed_at` datetime NULL
 ) ENGINE=InnoDB

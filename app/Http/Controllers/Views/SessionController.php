@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Views;
 
+use App\Components\Errors;
 use App\Contracts\PersonsContract;
 use App\Contracts\UsersContract;
 use App\Http\Requests\LoginRequest;
@@ -39,13 +40,25 @@ class SessionController extends ViewsController
     {
         DB::beginTransaction();
 
+        $rememberMe = to_bool($request->input('remember_me', false));
+
         $personModel = $this->personRepository->save($request);
         $usermodel = $this->userRepository
             ->setPersonId($personModel->id)
             ->save($request)
         ;
 
-        dd($personModel, $usermodel);
+        $credentials = [
+            'password' => $request->input('password'),
+            'username' => $usermodel->username,
+        ];
+
+        if (Auth::attempt($credentials, $rememberMe)) {
+            $request->session()->regenerate();
+            Auth::login($usermodel, $rememberMe);
+        }
+
+        DB::commit();
     }
 
     public function login(): View
@@ -55,11 +68,17 @@ class SessionController extends ViewsController
 
     public function authenticate(LoginRequest $request)
     {
-        $rememberMe = $request->input('remember-me');
+        $rememberMe = to_bool($request->input('remember-me', false));
         $credentials = $request->only(['email', 'password']);
 
-        $result = Auth::attempt($credentials, $rememberMe);
+        if (Auth::attempt($credentials, $rememberMe)) {
+            $request->session()->regenerate();
+            // Auth::login($request->user(), $rememberMe);
+            return redirect()->intended('admin/dashboard');
+        }
 
-        dd($result);
+        return back()->withErrors([
+            'username' => trans(Errors::WRONG_CREDENTIALS),
+        ]);
     }
 }

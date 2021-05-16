@@ -10,11 +10,26 @@
                 <div class="card-header">
                     <h3 class="h3 mt-3">Iniciar Sesión</h3>
                     <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Ha ocurrido un error!</strong>
+                            @foreach($errors->all() as $error)
+                                <div>- {{ $error }}</div>
+                            @endforeach
+                            <button type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                                >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="txtemail" class="sr-only">Correo Electrónico</label>
-                        <input type="email" id="txtemail" name="email" class="form-control form-control-lg" placeholder="Correo Electrónico" required autofocus>
+                        <label for="txtusername" class="sr-only">Usuario</label>
+                        <input type="text" id="txtusername" name="username" class="form-control form-control-lg" placeholder="Nombre de Usuario" required autofocus>
                     </div>
                     <div class="form-group">
                         <label for="txtpassword" class="sr-only">contraseña</label>
@@ -34,6 +49,8 @@
             @csrf()
             <br>
             <p class="mt-2 text-muted text-center">&copy; {{ date('Y') }}</p>
+            <pre>@json(session()->all(), JSON_PRETTY_PRINT)</pre>
+            <pre>@json(DB::getQueryLog(), JSON_PRETTY_PRINT)</pre>
         </form>
     </div>
 

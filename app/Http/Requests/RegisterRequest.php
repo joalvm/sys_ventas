@@ -34,6 +34,7 @@ class RegisterRequest extends FormRequest
             [
                 'password' => ['required', 'string', 'min:6'],
                 'retry_password' => ['required', 'same:password'],
+                'remember_me' => ['nullable', 'boolean'],
             ]
         );
     }

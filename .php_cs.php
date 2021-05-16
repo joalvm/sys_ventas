@@ -18,6 +18,7 @@ $rules = [
     'single_line_throw' => false,
     'no_empty_comment' => false,
     'new_with_braces' => false,
+    'concat_space' => ['spacing' => 'one'],
     'ordered_imports' => [
         'sort_algorithm' => 'alpha',
     ],

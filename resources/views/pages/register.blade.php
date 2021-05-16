@@ -1,6 +1,3 @@
-<?php
-?>
-
 @extends('templates.basic')
 
 @section('title', 'Registro')
@@ -76,8 +73,14 @@
                                 <select id="cbogener" name="gender"
                                     class="form-control form-control-lg form-control form-control-lg" required>
                                     <option value="" {{ old('gender') ?? 'selected' }} disabled>Seleccione...</option>
-                                    <option value="{{ Persons::GENDER_FEMALE }}" {{ old('gender') === Persons::GENDER_FEMALE ? 'selected' : '' }}>Femenino</option>
-                                    <option value="{{ Persons::GENDER_MALE }}" {{ old('gender') === Persons::GENDER_MALE ? 'selected' : '' }}>Masculino</option>
+                                    <option
+                                        value="{{ \App\Models\Persons::GENDER_FEMALE }}"
+                                        {{ old('gender') === \App\Models\Persons::GENDER_FEMALE ? 'selected' : '' }}
+                                        >Femenino</option>
+                                    <option
+                                        value="{{ \App\Models\Persons::GENDER_MALE }}"
+                                        {{ old('gender') === \App\Models\Persons::GENDER_MALE ? 'selected' : '' }}
+                                        >Masculino</option>
                                 </select>
                             </div>
                         </div>

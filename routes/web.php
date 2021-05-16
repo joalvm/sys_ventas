@@ -22,7 +22,7 @@ Route::post('login', [SessionController::class, 'authenticate']);
 
 Route::prefix('admin')
     ->group(function () {
-    Route::get('dashboard', [AdminController::class, 'dashboard']);
-    Route::get('profile', [AdminController::class, 'profile']);
-})
+        Route::get('dashboard', [AdminController::class, 'dashboard']);
+        Route::get('profile', [AdminController::class, 'profile']);
+    })
 ;
