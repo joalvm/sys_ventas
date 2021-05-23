@@ -10,9 +10,9 @@ trait Schematizable
     /**
      * Reconstruye la estructura del array en base al esquema.
      *
-     * @param object|array $item
+     * @param array|object $item
      *
-     * @return object|array
+     * @return array|object
      */
     public function schematize($item, Closure $callback = null)
     {

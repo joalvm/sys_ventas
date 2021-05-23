@@ -11,7 +11,7 @@ class Breadcrumb extends Component
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param mixed $items
      */
     public function __construct($items = [])
     {
@@ -21,7 +21,7 @@ class Breadcrumb extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return \Closure|\Illuminate\Contracts\View\View|string
      */
     public function render()
     {

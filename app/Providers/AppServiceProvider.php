@@ -4,14 +4,13 @@ namespace App\Providers;
 
 use App\View\Components\Breadcrumb;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
     public function register()
     {
@@ -20,11 +19,11 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot()
     {
+        DB::enableQueryLog();
+
         Blade::component('breadcrumb', Breadcrumb::class);
     }
 }

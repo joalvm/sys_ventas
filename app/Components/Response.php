@@ -2,13 +2,13 @@
 
 namespace App\Components;
 
-use Illuminate\Pagination\Paginator;
-use Illuminate\Http\Response as BaseResponse;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection as BaseCollection;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Http\Response as BaseResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection as BaseCollection;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @method mixed methodName()
@@ -121,15 +121,15 @@ class Response extends BaseResponse
     private static function isPaginator($data)
     {
         return
-            ($data instanceof Paginator) ||
-            ($data instanceof LengthAwarePaginator);
+            ($data instanceof Paginator)
+            || ($data instanceof LengthAwarePaginator);
     }
 
     private static function isCollection($data)
     {
         return
-            ($data instanceof BaseCollection) ||
-            ($data instanceof EloquentCollection) ||
-            ($data instanceof Item);
+            ($data instanceof BaseCollection)
+            || ($data instanceof EloquentCollection)
+            || ($data instanceof Item);
     }
 }

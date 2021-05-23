@@ -19,7 +19,7 @@ const ASSETS_TARGET = 'public/static/assets/';
  */
 
 mix.browserSync({
-    proxy: 'http://project-franco.local/',
+    proxy: 'http://sysventas.local/',
     open: false,
 });
 
@@ -34,12 +34,14 @@ mix.webpackConfig({
 
 mix.sass('src/scss/core.scss', STYLE_TARGET_PATH);
 mix.sass('src/scss/login.scss', STYLE_TARGET_PATH);
+mix.sass('src/scss/register.scss', STYLE_TARGET_PATH);
 mix.sass('src/scss/admin.scss', STYLE_TARGET_PATH);
 mix.sass('src/scss/admin/dashboard.scss', STYLE_TARGET_PATH + '/admin');
 mix.sass('src/scss/admin/profile.scss', STYLE_TARGET_PATH + '/admin');
 
 // JAVASCRIPT
 mix.js('src/js/app.js', SCRIPT_TARGET_PATH + '/');
+mix.js('src/js/register.js', SCRIPT_TARGET_PATH + '/');
 
 mix.copyDirectory(MODULES + 'bootstrap-icons/font', ASSETS_TARGET + 'bootstrap-icons');
 

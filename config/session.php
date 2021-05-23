@@ -3,7 +3,6 @@
 use Illuminate\Support\Str;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Session Driver
@@ -85,7 +84,7 @@ return [
     |
     */
 
-    'table' => 'sessions',
+    'table' => 'user_sessions',
 
     /*
     |--------------------------------------------------------------------------
@@ -128,7 +127,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
     ),
 
     /*
@@ -197,5 +196,4 @@ return [
     */
 
     'same_site' => 'lax',
-
 ];

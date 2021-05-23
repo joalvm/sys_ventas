@@ -1,0 +1,16 @@
+@import "./global";
+@import "./components/forms";
+
+body {
+    background-color: $gray-100;
+}
+
+.card-register {
+    border: none;
+    margin-top: 10%;
+    .card-header {
+        background-color: $white;
+        border-bottom: none;
+    }
+}
+

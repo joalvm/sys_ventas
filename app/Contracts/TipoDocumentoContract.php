@@ -2,11 +2,11 @@
 
 namespace App\Contracts;
 
-use stdClass;
-use Illuminate\Http\Request;
 use App\Models\TipoDocumento;
-use Illuminate\Support\Collection;
 use App\Repositories\TipoDocumentoRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use stdClass;
 
 interface TipoDocumentoContract extends RepositoryContract
 {
@@ -38,7 +38,7 @@ interface TipoDocumentoContract extends RepositoryContract
     /**
      * Establece el filtro por el campo operaciones.
      *
-     * @param string[]|null $operaciones
+     * @param null|string[] $operaciones
      */
     public function setOperaciones($operaciones): TipoDocumentoRepository;
 }
