@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Views\AdminController;
+use App\Http\Controllers\Views\RegisterController;
 use App\Http\Controllers\Views\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +16,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('register', [SessionController::class, 'register']);
-Route::post('register', [SessionController::class, 'createUser']);
-Route::get('login', [SessionController::class, 'login']);
-Route::post('login', [SessionController::class, 'authenticate']);
+Route::apiResource('register', RegisterController::class)
+    ->middleware('guest')
+    ->only(['index', 'store'])
+;
+
+Route::get('login', [SessionController::class, 'login'])
+    ->middleware('guest')
+    ->name('login')
+;
+
+Route::post('login', [SessionController::class, 'authenticate'])
+    ->middleware('guest')
+    ->name('login.store')
+;
 
 Route::prefix('admin')
+    ->middleware('auth')
     ->group(function () {
-        Route::get('dashboard', [AdminController::class, 'dashboard']);
-        Route::get('profile', [AdminController::class, 'profile']);
+        Route::get('logout', [SessionController::class, 'logout'])->name('logout');
+
+        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('profile', [AdminController::class, 'profile'])->name('profile');
     })
 ;

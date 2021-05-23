@@ -18,7 +18,7 @@
                         <span>Perfil</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{ url('admin/logout') }}">
                         <i class="bi bi-box-arrow-left  align-middle mr-3"></i>
                         <span>Cerrar Sesión</span>
                     </a>

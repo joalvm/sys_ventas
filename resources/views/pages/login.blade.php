@@ -49,8 +49,6 @@
             @csrf()
             <br>
             <p class="mt-2 text-muted text-center">&copy; {{ date('Y') }}</p>
-            <pre>@json(session()->all(), JSON_PRETTY_PRINT)</pre>
-            <pre>@json(DB::getQueryLog(), JSON_PRETTY_PRINT)</pre>
         </form>
     </div>
 

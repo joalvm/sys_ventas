@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
-class SessionsRepository extends Repository
+use App\Contracts\SessionsContract;
+
+class SessionsRepository extends Repository implements SessionsContract
 {
 }

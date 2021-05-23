@@ -6,8 +6,8 @@
 @section('content')
 <div class="container">
     <h1 class="display-4 text-center">Hola mundo!</h1>
-    <pre>@json(Auth::user(), JSON_PRETTY_PRINT)</pre>
-    <pre>@json(DB::getQueryLog(), JSON_PRETTY_PRINT)</pre>
+    <pre>@json(Session::get('token'), JSON_PRETTY_PRINT)</pre>
+    <pre>{{Auth::check() === true ? 'true' : 'false'}}</pre>
 </div>
 @endsection
 

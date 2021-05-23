@@ -32,8 +32,8 @@ DEFAULT CHARACTER SET=utf8mb4
 DEFAULT COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `user_sessions` (
-  `id` varchar UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `user_id` int(11) UNSIGNED NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `users_id` int(11) UNSIGNED NOT NULL,
   `token` text NOT NULL,
   `expire` datetime NOT NULL,
   `ip_address` varchar(45) NULL,

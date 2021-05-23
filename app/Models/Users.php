@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Validatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
@@ -71,5 +72,10 @@ class Users extends User
     public function person(): BelongsTo
     {
         return $this->belongsTo(Persons::class);
+    }
+
+    public function sessions(): HasMany
+    {
+        return $this->hasMany(Sessions::class);
     }
 }

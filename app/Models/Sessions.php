@@ -2,48 +2,41 @@
 
 namespace App\Models;
 
-use App\Traits\Validatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Validation\Rule;
 
 class Sessions extends Model
 {
     use HasFactory;
-    use Validatable;
 
     public const UPDATED_AT = null;
 
+    public const DEVICE_MOBILE = 'MOBILE';
+    public const DEVICE_DESKTOP = 'DESKTOP';
+    public const DEVICE_TABLET = 'TABLET';
+    public const DEVICE_UNKNOWN = 'UNKNOWN';
+
+    public const DEFAULT_DEVICE = self::DEVICE_UNKNOWN;
+
     protected $table = 'user_sessions';
     protected $fillable = [
-        'user_id',
+        'users_id',
         'token',
         'expire',
-        'ip',
+        'ip_address',
         'platform',
+        'platform_version',
         'browser',
         'browser_version',
+        'device',
+        'user_agent',
         'closed_at',
     ];
 
-    public function rules(): array
-    {
-        return [
-            'user_id' => [
-                'required',
-                'integer',
-                Rule::exists('users', 'id')->whereNull('deleted_at'),
-            ],
-            'token' => ['required', 'string'],
-            'expire' => ['requred', 'date_format:Y-m-d H:i:s'],
-            'ip' => ['required', 'ip', 'max:16'],
-            'platform' => ['nullable', 'string', 'max:25'],
-            'browser' => ['nullable', 'string', 'max:25'],
-            'browser_version' => ['nullable', 'string', 'max:25'],
-            'closed_at' => ['nullable', 'date_format:Y-m-d H:i:s'],
-        ];
-    }
+    protected $attributes = [
+        'device' => self::DEFAULT_DEVICE,
+    ];
 
     public function user(): BelongsTo
     {
