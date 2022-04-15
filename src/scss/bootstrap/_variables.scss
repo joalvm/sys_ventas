@@ -1,0 +1,24 @@
+$gray-100: #dcdfe2 !default;
+$gray-200: #b9bec5 !default;
+$gray-300: #959ea9 !default;
+$gray-400: #727d8c !default;
+$gray-500: #4f5d6f !default;
+$gray-600: #3f4a59 !default;
+$gray-700: #2f3843 !default;
+$gray-800: #20252c !default;
+$gray-900: #101316 !default;
+
+@import "~bootstrap/scss/variables";
+
+$theme-colors: map-remove(
+    $theme-colors,
+    "secondary", "success", "info", "warning", "danger", "light", "dark"
+);
+
+$body-color: #465568;
+
+$input-focus-box-shadow: 0 0 0 1px $primary;
+$input-focus-border-color: $primary;
+
+$form-select-focus-border-color: $input-focus-border-color;
+$form-select-focus-box-shadow: $input-focus-box-shadow;

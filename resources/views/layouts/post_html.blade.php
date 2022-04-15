@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="static/assets/bootstrap-icons/bootstrap-icons.css" />
+<link rel="stylesheet" href="{{ url('static/assets/bootstrap-icons/bootstrap-icons.css') }}" />
 
-<script src="static/assets/jquery/jquery.min.js"></script>
-<script src="static/assets/popper/popper.min.js"></script>
-<script src="static/js/app.js"></script>
+<script src="{{ url('static/assets/popperjs/popper.min.js') }}"></script>
+<script src="{{ url('static/js/app.js') }}"></script>

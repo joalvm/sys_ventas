@@ -14,7 +14,7 @@ class EloquentUserProvider extends BaseEloquentUserProvider
             return;
         }
 
-        $query = $this->createModel()->newQuery();
+        $query = $this->createModel()->with('person')->newQuery();
 
         foreach ($credentials as $key => $value) {
             if (!Str::contains($key, 'password')) {
@@ -22,7 +22,7 @@ class EloquentUserProvider extends BaseEloquentUserProvider
             }
         }
 
-        return $query->first()->load('person');
+        return $query->first();
     }
 
     /**
